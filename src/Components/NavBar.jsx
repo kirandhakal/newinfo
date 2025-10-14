@@ -22,6 +22,11 @@ const handleSignup = () => {
   return (
     <>
       <nav className="navbar">
+          <div className="nav-left">
+           <button className="nav-btn" onClick={handleNavbar}>
+            info care
+          </button>
+        </div> 
         <div className="nav-right">
           <button className="nav-btn" onClick={handleLogin}>
             Login
@@ -38,15 +43,11 @@ const handleSignup = () => {
           </button>
         </div> */}
       
-        <div className="nav-left">
-           <button className="nav-btn" onClick={handleNavbar}>
-            info care
-          </button>
-        </div> 
+      
       </nav>
-      <div className="main-heading">
+      {/* <div className="main-heading">
         <h1>Welcome to Information Care</h1>
-      </div>
+      </div> */}
     </>
   );
 };

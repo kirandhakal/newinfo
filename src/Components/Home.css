@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -400px;
+  margin-top: -200px;
 }
 
 .home-card {
@@ -42,7 +42,7 @@
 .home-text a:hover {
   text-decoration: underline;
 }
-/* .logout-button {
+.logout-button {
   margin-top: 20px;
   padding: 10px 20px;
   background-color: #ff4d4f;
@@ -52,4 +52,4 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
-} */
+}

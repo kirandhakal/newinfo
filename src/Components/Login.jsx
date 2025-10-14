@@ -11,16 +11,15 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      // --- Admin bypass ---
+      if (email === "admin@gmail.com" && password === "admin") {
+        localStorage.setItem("token", "admin-token");
+        console.log("Admin logged in");
+        navigate("/users");
+        return;
+      }
 
-     if (email === "admin@gmail.com" && password === "admin") {
-  localStorage.setItem("token", "admin-token");
-  // setIsLoggedIn(true);
-  setTimeout(() => navigate("/users"), 100); 
-  return;
-}
-
-
-      // Otherwise, go through backend authentication
+      // --- Normal user login ---
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,41 +30,39 @@ const Login = () => {
 
       if (res.ok) {
         localStorage.setItem("token", data.token);
-        console.log("Login successful:", data);
+        console.log("User login successful:", data);
         navigate("/Home");
       } else {
-        alert(data.message);
+        alert(data.message || "Invalid credentials");
       }
     } catch (err) {
-      console.error(err);
-      alert("Server error");
+      console.error("Login error:", err);
+      alert("Server error, try again later");
     }
   };
 
   return (
-    <>
     <div className="container login-container">
       <div className="box">
-      <h2>Login Form</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          placeholder="Email"
-          value={email}
-          className="form-box"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          placeholder="Password"
-          type="password"
-          value={password}
-          className="form-box"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+        <h2>Login Form</h2>
+        <form onSubmit={handleLogin}>
+          <input
+            placeholder="Email"
+            value={email}
+            className="form-box"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            value={password}
+            className="form-box"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
-    </div>
-    </>
   );
 };
 

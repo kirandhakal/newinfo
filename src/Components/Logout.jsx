@@ -13,6 +13,8 @@ const Logout = () => {
 
     // Redirect to home page
     navigate("/Home");
+    console.log('yoo');
+    
   }, [navigate]);
 
   return null; // No UI needed

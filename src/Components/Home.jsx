@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css"; 
-
-
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  window.location.reload(); // Reload to reset state
-}
-
-
+import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 
 const decodeJWT = (token) => {
@@ -26,6 +20,13 @@ const decodeJWT = (token) => {
 
 
 const Home = () => {
+  const navigate = useNavigate();
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/login");
+};
+
   const [user, setUser] = useState({ name: "", email: "", id: "" });
 
   useEffect(() => {
@@ -48,6 +49,8 @@ const Home = () => {
   }, []);
 
   return (
+   <>
+   {/* <NavBar /> */}
     <div className="home-container">
       <div className="home-card">
         <h1 className="home-heading">
@@ -67,6 +70,7 @@ const Home = () => {
       </div>
      
     </div>
+    </>
   );
 };
 
