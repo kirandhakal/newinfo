@@ -1,10 +1,15 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project live demo
+https://newinfo.vercel.app/
 
-## Available Scripts
+## Run project locally
 
-In the project directory, you can run:
+### Clone the project
+`gh repo clone kirandhakal/newinfo` 
+
+### `npm install`
 
 ### `npm start`
 
