@@ -93,3 +93,7 @@ button:hover {
   font-weight: bold;
   font-size: 1rem;
 }
+.login-button-signup{
+  margin-top: 15px;
+  background-color: #28a745;
+}

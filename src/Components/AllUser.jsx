@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./AllUser.css";
+import { useNavigate } from "react-router-dom";
 
 const AllUser = () => {
+
+ const navigate = useNavigate();
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/login");
+};
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -30,7 +39,9 @@ const AllUser = () => {
           ))}
         </tbody>
       </table>
+       <button className="logout-button" onClick={handleLogout}>logout</button>  
     </div>
+   
   );
 };
 

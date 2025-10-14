@@ -5,12 +5,13 @@ import AllUser from './Components/AllUser';
 import NavBar from './Components/NavBar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+// import Main from './Components/Main';
 
 function App() {
   return (
 
     <Router>
-          <NavBar />
+      <NavBar />
       <div className="App">
         <Routes>
        

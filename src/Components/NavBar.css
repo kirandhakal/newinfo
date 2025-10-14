@@ -1,10 +1,10 @@
 /* Navbar container */
 .navbar {
   display: flex;
-  justify-content: space-between; /* Left and right side */
+  /* justify-content: space-between;  */
   align-items: center;
   padding: 10px 20px;
-  background-color: #1f2937; /* Dark gray background */
+  background-color: #1f2937; 
   color: white;
   font-family: Arial, sans-serif;
 }
@@ -24,6 +24,7 @@
   color: white;
   font-weight: bold;
   transition: background 0.3s;
+  margin: 10px;
 }
 
 .nav-btn:hover {
@@ -35,6 +36,7 @@
 .nav-right {
   font-size: 20px;
   font-weight: bold;
+  margin: 10px;
 }
 .main-heading{
   font-size: 24px;

@@ -44,6 +44,7 @@ const Signup = () => {
         <input placeholder="Role" value={role} className="form-box" onChange={e => setRole(e.target.value)} />
         <input placeholder="Password" type="password" value={password} className="form-box" onChange={e => setPassword(e.target.value)} />
         <button type="submit">Sign Up</button>
+        <button className="login-button-signup" onClick={() => navigate("/Login")}>Already a user? Login</button>
       </form>
     </div>
     </div>
