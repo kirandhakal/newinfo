@@ -14,6 +14,8 @@ const Login = () => {
 
      if (email === "admin@gmail.com" && password === "admin") {
   localStorage.setItem("token", "admin-token");
+  console.log('hello');
+  
   // setIsLoggedIn(true);
   setTimeout(() => navigate("/users"), 100); 
   return;
