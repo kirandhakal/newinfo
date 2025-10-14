@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      // --- Admin bypass ---
+      // ------------------------ Admin login ---
       if (email === "admin@gmail.com" && password === "admin") {
         localStorage.setItem("token", "admin-token");
         console.log("Admin logged in");
@@ -19,7 +19,7 @@ const Login = () => {
         return;
       }
 
-      // --- Normal user login ---
+      // --- ------------------------ login ----------------
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

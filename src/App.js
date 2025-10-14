@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 // import Main from './Components/Main';
-
+////hello login
 
 function App() {
 
@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
   if (!token) {
     return <Navigate to="/Login" />; // redirect to login if not authenticated
   }
-  
+ 
   return children; // show the page if authenticated
 };
 
@@ -30,17 +30,25 @@ const ProtectedRoute = ({ children }) => {
         <Routes>
        
           <Route path ="/Login" element={<Login />} />
-           <Route path ="/Signup" element={<Signup />} />
-          <Route path="/Home" element={<Home />} />
+          <Route path ="/Signup" element={<Signup />} />
+          
+          <Route 
+            path="/Home" 
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            } 
+          />
         
- <Route 
-          path="/users" 
-          element={
-            <ProtectedRoute>
-              <AllUser  />
-            </ProtectedRoute>
-          } 
-        />
+          <Route 
+            path="/users" 
+            element={
+              <ProtectedRoute>
+                <AllUser  />
+              </ProtectedRoute>
+            } 
+          />
 
 
           {/* <Route path="/users" element={<AllUser isAdmin={true} />} /> */}
