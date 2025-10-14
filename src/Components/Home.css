@@ -1,0 +1,55 @@
+.home-container {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f9ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -400px;
+}
+
+.home-card {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.home-heading {
+  color: #0077ff;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.home-text {
+  color: #555;
+  font-size: 16px;
+}
+
+.home-text a {
+  color: #0077ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.home-text a:hover {
+  text-decoration: underline;
+}
+/* .logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+} */

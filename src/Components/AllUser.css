@@ -1,0 +1,142 @@
+.all-user-container {
+  padding: 1rem;
+  margin: 50px;
+  font-family: Arial, sans-serif;
+}
+
+.all-user-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f5f5f5;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.user-table tr:hover {
+  background-color: #f0f0f0;
+}
+
+.no-users {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+
+.all-user-container {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.all-user-title {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f0f0f0;
+}
+
+.no-users {
+  text-align: center;
+  color: #888;
+}
+
+
+.all-user-container {
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  background-color: #f8f9fb;
+  min-height: 100vh;
+}
+
+h2 {
+  color: #1284e2;
+  margin-bottom: 20px;
+}
+
+.user-table {
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.user-table th,
+.user-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.user-table th {
+  background-color: #1284e2;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.message-box {
+  margin: 15px auto;
+  padding: 10px;
+  width: fit-content;
+  background-color: #e9f7ef;
+  color: #27ae60;
+  border-radius: 6px;
+  font-weight: 500;
+}
