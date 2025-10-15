@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./loginsignup.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  //------------------------ If users is already logged in, redirect away from /login to localhost:3000/
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/"); 
+    }
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // ------------------------ Admin login ---
+      //  ----------------------------Admin login------------
       if (email === "admin@gmail.com" && password === "admin") {
         localStorage.setItem("token", "admin-token");
         console.log("Admin logged in");
@@ -19,7 +29,7 @@ const Login = () => {
         return;
       }
 
-      // --- ------------------------ login ----------------
+      // ------------------------- Normal user login---------------------
       const res = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,13 +41,21 @@ const Login = () => {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         console.log("User login successful:", data);
-        navigate("/Home");
+      setMessage("Login successful");
+      navigate("/Home");
+
       } else {
-        alert(data.message || "Invalid credentials");
+        setMessage (data.message || "Invalid credentials");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000); // Clear message after 3 seconds
+       
+        // alert(data.message || "Invalid credentials");
       }
     } catch (err) {
       console.error("Login error:", err);
-      alert("Server error, try again later");
+      setMessage("Server error, try again later");
+      // alert("Server error, try again later");
     }
   };
 
@@ -48,10 +66,12 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <input
             placeholder="Email"
+            type="email"
             value={email}
             className="form-box"
             onChange={(e) => setEmail(e.target.value)}
           />
+
           <input
             placeholder="Password"
             type="password"
@@ -59,8 +79,19 @@ const Login = () => {
             className="form-box"
             onChange={(e) => setPassword(e.target.value)}
           />
+            <button className="login-button-remember" type="button">
+            Remember me
+          </button>
           <button type="submit">Login</button>
-          <button className="login-button-signup" onClick={() => navigate("/Signup")}>create a account </button>
+          <button
+            className="login-button-signup"
+            type="button"
+            onClick={() => navigate("/Signup")}
+          >
+            Create an account
+          </button>
+        
+            {message && <p className="login-message">{message}</p>}
         </form>
       </div>
     </div>

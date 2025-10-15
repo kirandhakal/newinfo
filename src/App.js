@@ -21,9 +21,6 @@ const ProtectedRoute = ({ children }) => {
 
 
   return (
-
-
-
     <Router>
       <NavBar />
       <div className="App">
@@ -31,6 +28,17 @@ const ProtectedRoute = ({ children }) => {
        
           <Route path ="/Login" element={<Login />} />
           <Route path ="/Signup" element={<Signup />} />
+          
+  {/* <Route 
+            path="/" 
+            element={
+              <ProtectedRoute>
+                <Login />
+              </ProtectedRoute>
+            } 
+          /> */}
+
+
           
           <Route 
             path="/Home" 
