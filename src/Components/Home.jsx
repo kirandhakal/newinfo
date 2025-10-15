@@ -17,8 +17,6 @@ const decodeJWT = (token) => {
   }
 };
 
-
-
 const Home = () => {
   const navigate = useNavigate();
 
@@ -66,7 +64,7 @@ const handleLogout = () => {
             Please <a href="/login">log in</a> to access your dashboard.
           </p>
         )}
-         <button className="logout-button" onClick={handleLogout}>logout</button>
+         {/* <button className="logout-button" onClick={handleLogout}>logout</button> */}
       </div>
      
     </div>
