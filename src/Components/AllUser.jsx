@@ -8,10 +8,10 @@ const AllUser = () => {
   const [message, setMessage] = useState("");
 
   // Logout handler
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   navigate("/login");
+  // };
 
   // Fetch all users
   const fetchUsers = async () => {
@@ -88,9 +88,9 @@ const AllUser = () => {
         </tbody>
       </table>
 
-      <button className="logout-button" onClick={handleLogout}>
+      {/* <button className="logout-button" onClick={handleLogout}>
         Logout
-      </button>
+      </button> */}
       {message && <p className="action-message">{message}</p>}
     </div>
   );

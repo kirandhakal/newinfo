@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css"; 
 // import NavBar from "./NavBar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 
 const decodeJWT = (token) => {
@@ -18,12 +18,12 @@ const decodeJWT = (token) => {
 };
 
 const Home = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/login");
-};
+// const handleLogout = () => {
+//   localStorage.removeItem("token");
+//   navigate("/login");
+// };
 
   const [user, setUser] = useState({ name: "", email: "", id: "" });
 
@@ -52,7 +52,7 @@ const handleLogout = () => {
     <div className="home-container">
       <div className="home-card">
         <h1 className="home-heading">
-          Hello, {user.name ? user.name : "Guest"} Welcome to the team
+          Hello, {user.name ? user.name : "Admin"} Welcome to the team
         </h1>
         {user.email && (
           <p className="home-text">
@@ -61,7 +61,7 @@ const handleLogout = () => {
         )}
         {!user.name && (
           <p className="home-text">
-            Please <a href="/login">log in</a> to access your dashboard.
+            {/* Please <a href="/login">log in</a> to access your dashboard. */}
           </p>
         )}
          {/* <button className="logout-button" onClick={handleLogout}>logout</button> */}

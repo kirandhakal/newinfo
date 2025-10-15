@@ -104,7 +104,20 @@ button:hover {
   font-weight: bold;
   font-size: 1rem;
 }
-.login-button-remember{
-  margin:15px 0;
-  background-color: #6c757d;
+
+.remember-me{
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+  color: #ecece5;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  
+}
+
+.remember-me input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
 }
