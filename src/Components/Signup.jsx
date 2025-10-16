@@ -135,7 +135,7 @@ const Signup = () => {
             </small>
           </div>
 
-          {message && <p className="login-message">{message}</p>}
+          {message && <p className="message">{message}</p>}
 
           <button type="submit" className="login-btn">
             Sign Up

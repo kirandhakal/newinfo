@@ -59,7 +59,7 @@ const Login = () => {
   //-----------------handle Remember Me -----------------
    const handleRememberMe = (checked) => {
     setRememberMe(checked);
-    if (checked) {
+    if (!checked) {
       // User wants to be remembered → store in localStorage
       // localStorage.setItem("token", data.token);
       localStorage.setItem("email", email);

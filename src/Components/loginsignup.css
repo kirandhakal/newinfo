@@ -1,5 +1,3 @@
-
-/* Container */
 .login-wrapper {
   display: flex;
   align-items: center;
@@ -112,8 +110,8 @@
 }
 
 /* Message */
-.login-message {
-  margin-top: 1rem;
+.message {
+  margin: 1rem;
   font-size: 0.9rem;
   color: #e74c3c;
 }

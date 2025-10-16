@@ -31,7 +31,7 @@ const Home = () => {
     if (!token) {
       console.warn(" No token found in localStorage.");
       return;
-    }
+    };
 
     const decoded = decodeJWT(token);
     console.log("Decoded JWT data:", decoded);
