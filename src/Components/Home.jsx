@@ -28,7 +28,8 @@ const Home = () => {
   const [user, setUser] = useState({ name: "", email: "", id: "" });
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (!token) {
       console.warn(" No token found in localStorage.");
       return;

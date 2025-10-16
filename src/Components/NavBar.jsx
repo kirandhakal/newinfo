@@ -7,23 +7,24 @@ const NavBar = () => {
   const location = useLocation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false); // 👈 NEW: Admin flag
+  const [isAdmin, setIsAdmin] = useState(false); 
   const [isHydrated, setIsHydrated] = useState(false);
 
   const getAuthStatus = () => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     return !!token;
   };
 
   const getAdminStatus = () => {
-    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-    return token === "admin-token"; // 👈 Check for admin token
+    const token =  sessionStorage.getItem("token");
+    console.log("Admin check, token:", token);
+    return token === "admin-token"; //  Check for admin token
   };
 
   useLayoutEffect(() => {
     const checkAuth = () => {
       setIsLoggedIn(getAuthStatus());
-      setIsAdmin(getAdminStatus()); // 👈 Set admin status
+      setIsAdmin(getAdminStatus()); //  Set admin status
       setIsHydrated(true);
     };
 
@@ -33,10 +34,10 @@ const NavBar = () => {
     return () => window.removeEventListener("authChange", checkAuth);
   }, [location.pathname]);
 
-  const handleNavbar = () => navigate("/Home"); // 👈 Fixed: Go to /Home, not /
-  const handleLogin = () => navigate("/Login");
-  const handleSignup = () => navigate("/Signup");
-  const handleUsers = () => navigate("/users"); // 👈 NEW: Users link
+  const handleNavbar = () => navigate("/home"); 
+  const handleLogin = () => navigate("/login");
+  const handleSignup = () => navigate("/signup");
+  const handleUsers = () => navigate("/users");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -44,9 +45,9 @@ const NavBar = () => {
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("email");
     setIsLoggedIn(false);
-    setIsAdmin(false); // 👈 Reset admin status
+    setIsAdmin(false); //  Reset admin status
     window.dispatchEvent(new Event("authChange"));
-    navigate("/Login", { replace: true });
+    navigate("/login", { replace: true });
   };
 
   // Skip rendering until we know the real state (no flicker)
@@ -55,7 +56,7 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left" onClick={handleNavbar}>
-        <h2 className="logo">InfoCare</h2>
+        <h2 className="logo">InfoCare123</h2>
       </div>
 
       <ul className="nav-links">
@@ -65,7 +66,7 @@ const NavBar = () => {
             <li onClick={handleNavbar}>Home</li>
             
             {/* 👈 USERS LINK - ADMIN ONLY */}
-            {isAdmin && <li onClick={handleUsers}>Users</li>}
+            {/* {isAdmin && <li onClick={handleUsers}>Users</li>} */}
             
             <li onClick={handleLogout}>Logout</li>
           </>

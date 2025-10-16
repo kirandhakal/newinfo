@@ -121,3 +121,12 @@ button:hover {
   width: 18px;
   height: 18px;
 }
+.toggle-password {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #beca11;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: left;
+}

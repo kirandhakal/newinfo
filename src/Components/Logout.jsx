@@ -6,7 +6,8 @@ const Logout = () => {
 
   useEffect(() => {
     // Remove token from localStorage
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
 
     // Optionally, you can clear other stored info
     // localStorage.clear();

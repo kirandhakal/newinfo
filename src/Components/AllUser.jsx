@@ -6,25 +6,24 @@ const AllUser = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
+ 
+  useEffect(() => {
+      console.log("Fetching users...");
 
-  // Logout handler
-  // const handleLogout = () => {
-  //   localStorage.removeItem("token");
-  //   navigate("/login");
-  // };
-
-  // Fetch all users
-  const fetchUsers = async () => {
+    const fetchUsers = async () => {
     try {
-      const res = await fetch("http://localhost:5000/users");
-      const data = await res.json();
-      setUsers(data);
+      if (!users.length) {
+        
+        const res = await fetch("http://localhost:5000/users");
+        const data = await res.json();
+        setUsers(data);
+      }
     } catch (err) {
       console.error("Error fetching users:", err);
+    } finally {
+      return users
     }
   };
-
-  useEffect(() => {
     fetchUsers();
   }, []);
 
