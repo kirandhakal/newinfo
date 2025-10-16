@@ -6,24 +6,27 @@ const AllUser = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
- 
-  useEffect(() => {
-      console.log("Fetching users...");
 
-    const fetchUsers = async () => {
-    try {
-      if (!users.length) {
-        
-        const res = await fetch("http://localhost:5000/users");
-        const data = await res.json();
-        setUsers(data);
-      }
-    } catch (err) {
-      console.error("Error fetching users:", err);
-    } finally {
-      return users
+  useEffect(() => {
+    console.log("Fetching users...");
+    const isAdmin = sessionStorage.getItem("token") === "admin-token";
+    if (!isAdmin) {
+      navigate("/login");
+      return;
     }
-  };
+    const fetchUsers = async () => {
+      try {
+        if (!users.length) {
+          const res = await fetch("http://localhost:5000/users");
+          const data = await res.json();
+          setUsers(data);
+        }
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      } finally {
+        return users;
+      }
+    };
     fetchUsers();
   }, []);
 
@@ -40,7 +43,7 @@ const AllUser = () => {
       });
 
       if (res.ok) {
-        setMessage( "User deleted successfully");
+        setMessage("User deleted successfully");
         setTimeout(() => {
           setMessage("");
         }, 3000);
@@ -64,7 +67,10 @@ const AllUser = () => {
         <thead>
           <tr>
             {/* <th>ID</th> */}
-            <th>Name</th><th>Email</th><th>Role</th><th>Action</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>

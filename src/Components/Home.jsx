@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Home.css"; 
+import "./Home.css";
 // import NavBar from "./NavBar";
 // import { useNavigate } from "react-router-dom";
 
-
 const decodeJWT = (token) => {
-
   if (!token) return null;
   try {
     const payload = token.split(".")[1];
@@ -20,10 +18,10 @@ const decodeJWT = (token) => {
 const Home = () => {
   // const navigate = useNavigate();
 
-// const handleLogout = () => {
-//   localStorage.removeItem("token");
-//   navigate("/login");
-// };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   navigate("/login");
+  // };
 
   const [user, setUser] = useState({ name: "", email: "", id: "" });
 
@@ -48,27 +46,26 @@ const Home = () => {
   }, []);
 
   return (
-   <>
-   {/* <NavBar /> */}
-    <div className="home-container">
-      <div className="home-card">
-        <h1 className="home-heading">
-          Hello, {user.name ? user.name : "Admin"} Welcome to the team
-        </h1>
-        {user.email && (
-          <p className="home-text">
-            You’re logged in as <strong>{user.email}</strong>
-          </p>
-        )}
-        {!user.name && (
-          <p className="home-text">
-            {/* Please <a href="/login">log in</a> to access your dashboard. */}
-          </p>
-        )}
-         {/* <button className="logout-button" onClick={handleLogout}>logout</button> */}
+    <>
+      {/* <NavBar /> */}
+      <div className="home-container">
+        <div className="home-card">
+          <h1 className="home-heading">
+            Hello, {user.name ? user.name : "Admin"} Welcome to the team
+          </h1>
+          {user.email && (
+            <p className="home-text">
+              You’re logged in as <strong>{user.email}</strong>
+            </p>
+          )}
+          {!user.name && (
+            <p className="home-text">
+              {/* Please <a href="/login">log in</a> to access your dashboard. */}
+            </p>
+          )}
+          {/* <button className="logout-button" onClick={handleLogout}>logout</button> */}
+        </div>
       </div>
-     
-    </div>
     </>
   );
 };

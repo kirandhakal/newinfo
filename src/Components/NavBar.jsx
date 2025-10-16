@@ -7,7 +7,7 @@ const NavBar = () => {
   const location = useLocation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false); 
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
 
   const getAuthStatus = () => {
@@ -16,7 +16,7 @@ const NavBar = () => {
   };
 
   const getAdminStatus = () => {
-    const token =  sessionStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     console.log("Admin check, token:", token);
     return token === "admin-token"; //  Check for admin token
   };
@@ -34,7 +34,7 @@ const NavBar = () => {
     return () => window.removeEventListener("authChange", checkAuth);
   }, [location.pathname]);
 
-  const handleNavbar = () => navigate("/home"); 
+  const handleNavbar = () => navigate("/home");
   const handleLogin = () => navigate("/login");
   const handleSignup = () => navigate("/signup");
   const handleUsers = () => navigate("/users");
@@ -56,18 +56,18 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left" onClick={handleNavbar}>
-        <h2 className="logo">InfoCare123</h2>
+        <h2 className="logo">InfoCare</h2>
       </div>
 
       <ul className="nav-links">
         {isLoggedIn ? (
           <>
-            {/* 👈 HOME LINK - All logged-in users */}
+            {/*  HOME LINK - All logged-in users */}
             <li onClick={handleNavbar}>Home</li>
-            
-            {/* 👈 USERS LINK - ADMIN ONLY */}
-            {/* {isAdmin && <li onClick={handleUsers}>Users</li>} */}
-            
+
+            {/*  USERS LINK - ADMIN ONLY */}
+            {isAdmin && <li onClick={handleUsers}>Users</li>}
+
             <li onClick={handleLogout}>Logout</li>
           </>
         ) : (

@@ -1,12 +1,11 @@
-// ProtectedRoute.jsx
 import React from "react";
 import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ isAdmin, children }) => {
-   const token = sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
   // Check if user is not admin
   if (!isAdmin && token !== "admin-token") {
-    return <Navigate to="/login" replace />; 
+    return <Navigate to="/login" replace />;
   }
 
   return children;
