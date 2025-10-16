@@ -6,15 +6,15 @@ const Logout = () => {
 
   useEffect(() => {
     // Remove token from localStorage
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
 
     // Optionally, you can clear other stored info
     // localStorage.clear();
 
     // Redirect to home page
-    navigate("/Home");
-    console.log('yoo');
-    
+    navigate("/home");
+    console.log("yoo");
   }, [navigate]);
 
   return null; // No UI needed
