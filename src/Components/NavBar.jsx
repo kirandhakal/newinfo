@@ -40,10 +40,10 @@ const NavBar = () => {
   const handleUsers = () => navigate("/users");
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("email");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("email");
+    localStorage.clear();
+    sessionStorage.clear();
     setIsLoggedIn(false);
     setIsAdmin(false); //  Reset admin status
     window.dispatchEvent(new Event("authChange"));

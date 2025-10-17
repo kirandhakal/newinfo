@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./loginsignup.css";
 
@@ -14,6 +14,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+   
     try {
       // ------------------ Admin login ------------------
       if (email === "admin@gmail.com" && password === "admin") {
@@ -57,16 +58,39 @@ const Login = () => {
   };
 
   //-----------------handle Remember Me -----------------
-   const handleRememberMe = (checked) => {
+  //  const handleRememberMe = (checked) => {
+  //   setRememberMe(checked);
+  //   if (!checked) {
+  //     // User wants to be remembered → store in localStorage
+  //     // localStorage.setItem("token", data.token);
+  //     localStorage.setItem("email", email);
+  //     localStorage.setItem("rememberMe", "true");
+  //     console.log(" Remember Me checked - storing email in localStorage");
+  //   }
+  // };
+   useEffect(() => {
+    const remembered = localStorage.getItem("rememberMe") === "true";
+    setRememberMe(remembered);
+    if (remembered) {
+      const storedEmail = localStorage.getItem("email") || "";
+      setEmail(storedEmail);
+    }
+  }, []);
+
+  const handleRememberMe = (checked) => {
     setRememberMe(checked);
-    if (!checked) {
-      // User wants to be remembered → store in localStorage
-      // localStorage.setItem("token", data.token);
+    if (checked) {
       localStorage.setItem("email", email);
+      localStorage.setItem("token", email);
       localStorage.setItem("rememberMe", "true");
       console.log(" Remember Me checked - storing email in localStorage");
+    } else {
+      localStorage.removeItem("email");
+      sessionStorage.setItem("rememberMe", "false");
+      console.log(" Remember Me unchecked - removing email from localStorage");
     }
-  };
+  }
+
 
 
   return (

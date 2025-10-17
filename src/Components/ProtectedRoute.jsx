@@ -12,3 +12,6 @@ const ProtectedRoute = ({ isAdmin, children }) => {
 };
 
 export default ProtectedRoute;
+
+
+

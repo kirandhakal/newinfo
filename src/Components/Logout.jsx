@@ -10,7 +10,7 @@ const Logout = () => {
     sessionStorage.removeItem("token");
 
     // Optionally, you can clear other stored info
-    // localStorage.clear();
+    localStorage.clear();
 
     // Redirect to home page
     navigate("/home");
