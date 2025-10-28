@@ -14,13 +14,13 @@ i18n
             greeting : "Hi, welcome",
             welcome  : " Hi",
             team : "welcome to team",
-            message : " You’re logged in as ",
+            message : " You’re logged in as "
          },
          },
       np: {
          translation: {
             greeting : "नमस्ते ,स्वागत छ।",
-            welcome : " स्वागत",
+            welcome : " नमस्ते",
             team   : "टोलीमा स्वागत छ।",
             message : " तपाईंको इमेल"
          

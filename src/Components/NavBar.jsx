@@ -1,85 +1,89 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 import "./NavBar.css";
 
 const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
+  const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
 
-  const getAuthStatus = () => {
-    const token = sessionStorage.getItem("token");
-    return !!token;
-  };
-
-  const getAdminStatus = () => {
-    const token = sessionStorage.getItem("token");
-    console.log("Admin check, token:", token);
-    return token === "admin-token"; //  Check for admin token
-  };
+  // Auth checkers
+  const getAuthStatus = () => !!sessionStorage.getItem("token");
+  const getAdminStatus = () => sessionStorage.getItem("token") === "admin-token";
 
   useLayoutEffect(() => {
     const checkAuth = () => {
       setIsLoggedIn(getAuthStatus());
-      setIsAdmin(getAdminStatus()); //  Set admin status
+      setIsAdmin(getAdminStatus());
       setIsHydrated(true);
     };
-
     checkAuth();
-
     window.addEventListener("authChange", checkAuth);
     return () => window.removeEventListener("authChange", checkAuth);
   }, [location.pathname]);
 
+  // Language toggle handler
+  const toggleLanguage = () => {
+    const newLang = language === "en" ? "np" : "en";
+    setLanguage(newLang);
+    i18next.changeLanguage(newLang);
+    localStorage.setItem("language", newLang);
+  };
+
+  useEffect(() => {
+    i18next.changeLanguage(language);
+  }, [language]);
+
+  // Navigation handlers
   const handleNavbar = () => navigate("/home");
   const handleLogin = () => navigate("/login");
   const handleSignup = () => navigate("/signup");
   const handleUsers = () => navigate("/users");
-  // const handleInfo = () => navigate("/");
- 
 
   const handleLogout = () => {
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("email");
     localStorage.clear();
     sessionStorage.clear();
     setIsLoggedIn(false);
-    setIsAdmin(false); //  Reset admin status
+    setIsAdmin(false);
     window.dispatchEvent(new Event("authChange"));
     navigate("/login", { replace: true });
   };
 
-  // Skip rendering until we know the real state (no flicker)
   if (!isHydrated) return null;
 
   return (
     <nav className="navbar">
       <div className="nav-left" onClick={handleNavbar}>
-        <h2 className="logo" 
-        // onClick={handleInfo} 
-        >InfoCare</h2>
+        <h2 className="logo">InfoCare</h2>
       </div>
 
       <ul className="nav-links">
         {isLoggedIn ? (
           <>
-            {/*  HOME LINK - All logged-in users */}
-            <li onClick={handleNavbar}>Home</li>
-
-            {/*  USERS LINK - ADMIN ONLY */}
-            {isAdmin && <li onClick={handleUsers}>Users</li>}
-
-            <li onClick={handleLogout}>Logout</li>
+            <li onClick={handleNavbar}>{t("Home") || "Home"}</li>
+            {isAdmin && <li onClick={handleUsers}>{t("users") || "Users"}</li>}
+            <li onClick={handleLogout}>{t("logout") || "Logout"}</li>
           </>
         ) : (
           <>
-            <li onClick={handleLogin}>Login</li>
-            <li onClick={handleSignup}>Signup</li>
+            <li onClick={handleLogin}>{t("login") || "Login"}</li>
+            <li onClick={handleSignup}>{t("signup") || "Signup"}</li>
           </>
         )}
+
+      
+        <li>
+          <button className="lang-toggle-btn" onClick={toggleLanguage}>
+            {language === "en" ? "np" : "en"}
+          </button>
+        </li>
       </ul>
     </nav>
   );

@@ -1,10 +1,9 @@
-/* General layout */
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
   background-color: #f3f4f6;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -85,7 +84,7 @@
 }
 
 .lang-btn.english:hover {
-  background-color: #218838;
+  background-color: #9dd4aa;
 }
 
 .lang-btn.nepali {
@@ -93,7 +92,7 @@
 }
 
 .lang-btn.nepali:hover {
-  background-color: #c82333;
+  background-color: #da9098;
 }
 
 

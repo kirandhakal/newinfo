@@ -26,11 +26,11 @@ const Main = () => {
     <div className="main-container">
       <h1 className="main-title">{t("greeting")}</h1>
 
-      <button className="change-btn" onClick={() => setShowPopup(true)}>
+      {/* <button className="change-btn" onClick={() => setShowPopup(true)}>
         Change Language
-      </button>
+      </button> */}
 
-      {showPopup && (
+      {/* {showPopup && (
         <div className="popup-overlay">
           <div className="popup-box">
             <h2 className="popup-title">Select Language</h2>
@@ -50,7 +50,7 @@ const Main = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
