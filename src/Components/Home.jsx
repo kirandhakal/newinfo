@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-// import NavBar from "./NavBar";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 // import { useNavigate } from "react-router-dom";
 
 const decodeJWT = (token) => {
@@ -23,6 +24,25 @@ const Home = () => {
   //   navigate("/login");
   // };
 
+  const { t } = useTranslation();
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem("language");
+    if (!storedLang) {
+      setShowPopup(true);
+    } else {
+      i18next.changeLanguage(storedLang);
+    }
+  }, []);
+
+  const handleLanguageSelect = (lang) => {
+    i18next.changeLanguage(lang);
+    localStorage.setItem("language", lang);
+    setShowPopup(false);
+  };
+
+
   const [user, setUser] = useState({ name: "", email: "", id: "" });
 
   useEffect(() => {
@@ -31,7 +51,7 @@ const Home = () => {
     if (!token) {
       console.warn(" No token found in localStorage.");
       return;
-    };
+    }
 
     const decoded = decodeJWT(token);
     console.log("Decoded JWT data:", decoded);
@@ -51,11 +71,12 @@ const Home = () => {
       <div className="home-container">
         <div className="home-card">
           <h1 className="home-heading">
-            Hello, {user.name ? user.name : "Admin"} Welcome to the team
+            {t("welcome")}, {user.name ? user.name : "Admin"} ,{t("team")}
           </h1>
           {user.email && (
             <p className="home-text">
-              You’re logged in as <strong>{user.email}</strong>
+              {t("message") },{<strong>{user.email}</strong> }
+              {/* You’re logged in as <strong>{user.email}</strong> */}
             </p>
           )}
           {!user.name && (

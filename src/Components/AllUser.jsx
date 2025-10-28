@@ -93,9 +93,7 @@ const AllUser = () => {
         </tbody>
       </table>
 
-      {/* <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button> */}
+    
       {message && <p className="action-message">{message}</p>}
     </div>
   );

@@ -38,6 +38,8 @@ const NavBar = () => {
   const handleLogin = () => navigate("/login");
   const handleSignup = () => navigate("/signup");
   const handleUsers = () => navigate("/users");
+  // const handleInfo = () => navigate("/");
+ 
 
   const handleLogout = () => {
     // localStorage.removeItem("token");
@@ -56,7 +58,9 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left" onClick={handleNavbar}>
-        <h2 className="logo">InfoCare</h2>
+        <h2 className="logo" 
+        // onClick={handleInfo} 
+        >InfoCare</h2>
       </div>
 
       <ul className="nav-links">
