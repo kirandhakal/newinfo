@@ -7,24 +7,26 @@ const AllUser = () => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
 
-  // Logout handler
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
-  // Fetch all users
-  const fetchUsers = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/users");
-      const data = await res.json();
-      setUsers(data);
-    } catch (err) {
-      console.error("Error fetching users:", err);
-    }
-  };
-
   useEffect(() => {
+    console.log("Fetching users...");
+    const isAdmin = sessionStorage.getItem("token") === "admin-token";
+    if (!isAdmin) {
+      navigate("/login");
+      return;
+    }
+    const fetchUsers = async () => {
+      try {
+        if (!users.length) {
+          const res = await fetch("http://localhost:5000/users");
+          const data = await res.json();
+          setUsers(data);
+        }
+      } catch (err) {
+        console.error("Error fetching users:", err);
+      } finally {
+        return users;
+      }
+    };
     fetchUsers();
   }, []);
 
@@ -41,7 +43,7 @@ const AllUser = () => {
       });
 
       if (res.ok) {
-        setMessage( "User deleted successfully");
+        setMessage("User deleted successfully");
         setTimeout(() => {
           setMessage("");
         }, 3000);
@@ -65,7 +67,10 @@ const AllUser = () => {
         <thead>
           <tr>
             {/* <th>ID</th> */}
-            <th>Name</th><th>Email</th><th>Role</th><th>Action</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -88,9 +93,9 @@ const AllUser = () => {
         </tbody>
       </table>
 
-      <button className="logout-button" onClick={handleLogout}>
+      {/* <button className="logout-button" onClick={handleLogout}>
         Logout
-      </button>
+      </button> */}
       {message && <p className="action-message">{message}</p>}
     </div>
   );

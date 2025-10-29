@@ -7,38 +7,50 @@ const NavBar = () => {
   const location = useLocation();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isHydrated, setIsHydrated] = useState(false); // 👈 new flag
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  const getAuthStatus = () =>
-    !!(localStorage.getItem("token") || sessionStorage.getItem("token"));
+  const getAuthStatus = () => {
+    const token = sessionStorage.getItem("token");
+    return !!token;
+  };
+
+  const getAdminStatus = () => {
+    const token = sessionStorage.getItem("token");
+    console.log("Admin check, token:", token);
+    return token === "admin-token"; //  Check for admin token
+  };
 
   useLayoutEffect(() => {
     const checkAuth = () => {
       setIsLoggedIn(getAuthStatus());
-      setIsHydrated(true); // ✅ now ready to render
+      setIsAdmin(getAdminStatus()); //  Set admin status
+      setIsHydrated(true);
     };
 
-    checkAuth(); // run instantly
+    checkAuth();
 
     window.addEventListener("authChange", checkAuth);
     return () => window.removeEventListener("authChange", checkAuth);
   }, [location.pathname]);
 
-  const handleNavbar = () => navigate("/");
+  const handleNavbar = () => navigate("/home");
   const handleLogin = () => navigate("/login");
   const handleSignup = () => navigate("/signup");
+  const handleUsers = () => navigate("/users");
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("email");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("email");
+    localStorage.clear();
+    sessionStorage.clear();
     setIsLoggedIn(false);
+    setIsAdmin(false); //  Reset admin status
     window.dispatchEvent(new Event("authChange"));
     navigate("/login", { replace: true });
   };
 
-  // 👇 Skip rendering until we know the real state (no flicker)
+  // Skip rendering until we know the real state (no flicker)
   if (!isHydrated) return null;
 
   return (
@@ -49,7 +61,15 @@ const NavBar = () => {
 
       <ul className="nav-links">
         {isLoggedIn ? (
-          <li onClick={handleLogout}>Logout</li>
+          <>
+            {/*  HOME LINK - All logged-in users */}
+            <li onClick={handleNavbar}>Home</li>
+
+            {/*  USERS LINK - ADMIN ONLY */}
+            {isAdmin && <li onClick={handleUsers}>Users</li>}
+
+            <li onClick={handleLogout}>Logout</li>
+          </>
         ) : (
           <>
             <li onClick={handleLogin}>Login</li>

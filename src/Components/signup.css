@@ -1,11 +1,10 @@
+/* Container */
 .login-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 1rem;
-  /* margin: 80px; */
-  padding: 30px;
 }
 
 .login-box {
@@ -25,14 +24,11 @@
 
 /* Titles */
 .login-title {
-  font-size: 1.9rem;
-  color: #3b3737;
+  font-size: 1.8rem;
+  color: #333;
   font-weight: 600;
-  margin-bottom: 2.8rem;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: bold;
+  margin-bottom: 2.3rem;
 }
-
 
 /* Input Fields */
 .input-field {
@@ -46,13 +42,14 @@
   font-size: 1rem;
   border: 1.5px solid #ccc;
   border-radius: 0.75rem;
+  background-color: #fff;
+  outline: none;
   transition: all 0.3s ease;
 }
 
 .form-box:focus {
   border-color: #7d5fff;
   box-shadow: 0 0 5px rgba(125, 95, 255, 0.4);
-  outline: none;
 }
 
 /* Password Toggle */
@@ -91,7 +88,7 @@
   transform: translateY(-2px);
 }
 
-/* Signup Link */
+/* Login link */
 .signup-link {
   margin-top: 1rem;
   color: #777;
@@ -110,27 +107,18 @@
 }
 
 /* Message */
-.message {
-  margin: 1rem;
+.login-message {
+  margin-top: 1rem;
   font-size: 0.9rem;
   color: #e74c3c;
 }
-.remember-me{
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 1rem;
- 
-  
-}
-.remember-me >input[type="checkbox"] {
-  margin: 0.5rem 0.5rem;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-}
-.remember-me >span {
-  font-size: 1rem;
-   color: #011b2b;
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 2rem 1.5rem;
+  }
+  .login-title {
+    font-size: 1.5rem;
+  }
 }

@@ -7,8 +7,10 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [message, setMessage] = useState("");
-  
 
   const navigate = useNavigate();
 
@@ -16,16 +18,21 @@ const Signup = () => {
     e.preventDefault();
 
     // ---------- form Validation ----------
-    const nameRegex = /^[A-Za-z\s]+$/; 
-
+    const nameRegex = /^[A-Za-z\s]+$/;
     if (!nameRegex.test(name)) {
-      setMessage("Name must contain only letters and spaces — no numbers or symbols!");
+      setMessage("Name must contain only letters and spaces!");
       setTimeout(() => setMessage(""), 3000);
       return;
     }
 
     if (password.length < 6) {
       setMessage("Password must be at least 6 characters long!");
+      setTimeout(() => setMessage(""), 3000);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match!");
       setTimeout(() => setMessage(""), 3000);
       return;
     }
@@ -40,7 +47,7 @@ const Signup = () => {
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("token", data.token);
         navigate("/Login");
       } else {
         setMessage(data.message || "Signup failed");
@@ -54,48 +61,90 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
-      <div className="box">
-        <h2>Signup Form</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Name"
-            value={name}
-            type="text"
-            className="form-box"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            placeholder="Email"
-            value={email}
-            type="email"
-            className="form-box"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            placeholder="Role"
-            value={role}
-            className="form-box"
-            onChange={(e) => setRole(e.target.value)}
-          />
-          <input
-            placeholder="Password"
-            type="password"
-            value={password}
-            className="form-box"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <div className="login-wrapper">
+      <div className="login-box">
+        <h2 className="login-title">Create Account</h2>
 
-          {message && <p className="action-message">{message}</p>}
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <div className="input-field">
+            <input
+              placeholder="Full Name"
+              type="text"
+              value={name}
+              className="form-box"
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
 
-          <button type="submit">Sign Up</button>
-          <button
-            type="button"
-            className="login-button-signup"
-            onClick={() => navigate("/Login")}
-          >
-            Already a user? Login
+          <div className="input-field">
+            <input
+              placeholder="Email"
+              type="email"
+              value={email}
+              className="form-box"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              placeholder="Role"
+              type="text"
+              value={role}
+              className="form-box"
+              onChange={(e) => setRole(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Password */}
+          <div className="input-field password-field">
+            <input
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              className="form-box"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <small
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </small>
+          </div>
+
+          {/* Confirm Password */}
+          <div className="input-field password-field">
+            <input
+              placeholder="Re-enter Password"
+              type={showConfirm ? "text" : "password"}
+              value={confirmPassword}
+              className="form-box"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <small
+              className="toggle-password"
+              onClick={() => setShowConfirm(!showConfirm)}
+            >
+              {showConfirm ? "Hide" : "Show"}
+            </small>
+          </div>
+
+          {message && <p className="message">{message}</p>}
+
+          <button type="submit" className="login-btn">
+            Sign Up
           </button>
+
+          <p className="signup-link">
+            Already a user?{" "}
+            <span onClick={() => navigate("/Login")}>Login</span>
+          </p>
         </form>
       </div>
     </div>
