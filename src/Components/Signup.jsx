@@ -4,6 +4,7 @@ import "./loginsignup.css";
 
 const Signup = () => {
   const [name, setName] = useState("");
+  const [nepaliName, setNepaliName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +42,7 @@ const Signup = () => {
       const res = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, role, password }),
+        body: JSON.stringify({ name,nepaliName, email, role, password }),
       });
 
       const data = await res.json();
@@ -73,6 +74,17 @@ const Signup = () => {
               value={name}
               className="form-box"
               onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+{/* -----------------------------------------------neplai name----------------------------------------------- */}
+<div className="input-field">
+            <input
+              placeholder="Full Name nepali"
+              type="text"
+              value={nepaliName}
+              className="form-box"
+              onChange={(e) => setNepaliName(e.target.value)}
               required
             />
           </div>

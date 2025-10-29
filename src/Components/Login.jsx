@@ -45,12 +45,12 @@ const Login = () => {
         setMessage("Login successful");
         navigate("/home");
       } else {
-        setMessage(data.message || "Invalid credentials ");
+        setMessage(data.message || "ll-Invalid credentials ");
         setTimeout(() => setMessage(""), 3000);
       }
     } catch (err) {
       console.error("Login error:", err);
-      setMessage("invalid credentials.");
+      setMessage("login-invalid credentials.");
     }
 
  
@@ -90,7 +90,6 @@ const Login = () => {
       console.log(" Remember Me unchecked - removing email from localStorage");
     }
   }
-
 
 
   return (
