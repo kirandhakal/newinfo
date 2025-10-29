@@ -7,30 +7,29 @@ const AllUser = () => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    console.log("Fetching users...");
-    const isAdmin = sessionStorage.getItem("token") === "admin-token";
-    if (!isAdmin) {
-      navigate("/login");
-      return;
+ useEffect(() => {
+  const isAdmin = sessionStorage.getItem("token") === "admin-token";
+  if (!isAdmin) {
+    navigate("/login");
+    return;
+  }
+  console.log("hellooooooooooo");
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/users");
+      if (!res.ok) throw new Error("Failed to fetch users");
+      const data = await res.json();
+      setUsers(Array.isArray(data) ? data : []); 
+    } catch (err) {
+      console.error("Error fetching users:", err);
+      setUsers([]); 
     }
-    const fetchUsers = async () => {
-      try {
-        if (!users.length) {
-          const res = await fetch("http://localhost:5000/users");
-          const data = await res.json();
-          setUsers(data);
-        }
-      } catch (err) {
-        console.error("Error fetching users:", err);
-      } finally {
-        return users;
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  // Delete user handler
+  };
+  
+  fetchUsers();
+}, []);
+console.log("hello1")
+  // ------------------------------------------------Delete user 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
@@ -66,20 +65,22 @@ const AllUser = () => {
       <table border="1" cellPadding="5">
         <thead>
           <tr>
-            {/* <th>ID</th> */}
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
             <th>Action</th>
+            <th>nepaliName</th>
           </tr>
         </thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
-              {/* <td>{u.id}</td> */}
+              <td>{u.id}</td>
               <td>{u.name}</td>
               <td>{u.email}</td>
               <td>{u.role}</td>
+              <td>{u.nepaliName}</td>
               <td>
                 <button
                   className="delete-button"
@@ -93,7 +94,9 @@ const AllUser = () => {
         </tbody>
       </table>
 
-    
+      {/* <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button> */}
       {message && <p className="action-message">{message}</p>}
     </div>
   );

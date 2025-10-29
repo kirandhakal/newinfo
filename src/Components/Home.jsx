@@ -74,12 +74,12 @@ const decodeJWT = (token) => {
   }, []);
 
 
-  const currentLanguage = localStorage.getItem("language") || "np";
+  const currentLanguage = localStorage.getItem("language") || "en";
 
 const displayName =
   currentLanguage === "np"
-    ? user.nepaliName || user.name || "Admin"
-    : user.name || "Admin";
+    ? user.nepaliName : user.name || "Admin";
+    // : user.name || "Admin";
 
 // const [currentLanguage, setCurrentLanguage] = useState();
 // currentLanguage = localStorage.getItem("language")
