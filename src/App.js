@@ -18,7 +18,6 @@ import NotFound from "./Components/NotFound";
 import Test from "./Components/Test";
 import TestTwo from "./Components/TestTwo";
 
-
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -29,7 +28,7 @@ function App() {
     setIsAuthenticated(!!token);
   }, []);
 
-  // ✅ Protected Route Wrapper
+  //  Protected Route Wrapper
   const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
 
@@ -54,39 +53,34 @@ function App() {
         <Route path="/nested/*">
           <Route path="test" element={<Test />} />
           <Route path="test2" element={<TestTwo />} />
-            <Route path="*" element={<NotFound/>}/>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        
+
         <Route path="/main/mainchild" element={<Mainchild />} />
 
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
 
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-
-
-<Route path="/" element={<Main />} />
-          <Route
-            path="/users"
-            element={
-              <ProtectedRoute>
-                <AllUser />
-              </ProtectedRoute>
-            }
-          />
-              <Route path="*" element={<NotFound/>}/>
-        </Routes>
-        
-        
-        
+        <Route path="/" element={<Main />} />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <AllUser />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </Router>
   );
 }

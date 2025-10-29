@@ -110,9 +110,9 @@
 }
 
 /* Message */
-.message {
+.login-message {
   margin: 1rem;
-  font-size: 0.9rem;
+  font-size: 1.9rem;
   color: #e74c3c;
 }
 .remember-me{

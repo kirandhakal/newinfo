@@ -58,18 +58,4 @@ tr:hover {
   font-size: 2rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  table, th, td {
-    font-size: 0.9rem;
-  }
 
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .logout-button {
-    width: 80%;
-    padding: 10px;
-  }
-}

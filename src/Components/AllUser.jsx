@@ -7,29 +7,29 @@ const AllUser = () => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
 
- useEffect(() => {
-  const isAdmin = sessionStorage.getItem("token") === "admin-token";
-  if (!isAdmin) {
-    navigate("/login");
-    return;
-  }
-  console.log("hellooooooooooo");
-  const fetchUsers = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/users");
-      if (!res.ok) throw new Error("Failed to fetch users");
-      const data = await res.json();
-      setUsers(Array.isArray(data) ? data : []); 
-    } catch (err) {
-      console.error("Error fetching users:", err);
-      setUsers([]); 
+  useEffect(() => {
+    const isAdmin = sessionStorage.getItem("token") === "admin-token";
+    if (!isAdmin) {
+      navigate("/login");
+      return;
     }
-  };
-  
-  fetchUsers();
-}, []);
-console.log("hello1")
-  // ------------------------------------------------Delete user 
+    console.log("hellooooooooooo");
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/users");
+        if (!res.ok) throw new Error("Failed to fetch users");
+        const data = await res.json();
+        setUsers(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+        setUsers([]);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+  console.log("hello1");
+  // ------------------------------------------------Delete user -------
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
@@ -65,22 +65,23 @@ console.log("hello1")
       <table border="1" cellPadding="5">
         <thead>
           <tr>
-            <th>ID</th>
+            {/* <th>ID</th> */}
             <th>Name</th>
+            <th>nepaliName</th>
             <th>Email</th>
             <th>Role</th>
             <th>Action</th>
-            <th>nepaliName</th>
           </tr>
         </thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
-              <td>{u.id}</td>
+              {/* <td>{u.id}</td> */}
               <td>{u.name}</td>
+              <td>{u.nepaliName}</td>
               <td>{u.email}</td>
               <td>{u.role}</td>
-              <td>{u.nepaliName}</td>
+
               <td>
                 <button
                   className="delete-button"

@@ -12,11 +12,14 @@ const NavBar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "en"
+  );
 
   // Auth checkers
   const getAuthStatus = () => !!sessionStorage.getItem("token");
-  const getAdminStatus = () => sessionStorage.getItem("token") === "admin-token";
+  const getAdminStatus = () =>
+    sessionStorage.getItem("token") === "admin-token";
 
   useLayoutEffect(() => {
     const checkAuth = () => {
@@ -78,7 +81,6 @@ const NavBar = () => {
           </>
         )}
 
-      
         <li>
           <button className="lang-toggle-btn" onClick={toggleLanguage}>
             {language === "en" ? "np" : "en"}

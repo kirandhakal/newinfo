@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./loginsignup.css";
 
@@ -14,7 +14,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-   
     try {
       // ------------------ Admin login ------------------
       if (email === "admin@gmail.com" && password === "admin") {
@@ -52,23 +51,9 @@ const Login = () => {
       console.error("Login error:", err);
       setMessage("login-invalid credentials.");
     }
-
- 
-
   };
 
-  //-----------------handle Remember Me -----------------
-  //  const handleRememberMe = (checked) => {
-  //   setRememberMe(checked);
-  //   if (!checked) {
-  //     // User wants to be remembered → store in localStorage
-  //     // localStorage.setItem("token", data.token);
-  //     localStorage.setItem("email", email);
-  //     localStorage.setItem("rememberMe", "true");
-  //     console.log(" Remember Me checked - storing email in localStorage");
-  //   }
-  // };
-   useEffect(() => {
+  useEffect(() => {
     const remembered = localStorage.getItem("rememberMe") === "true";
     setRememberMe(remembered);
     if (remembered) {
@@ -89,8 +74,7 @@ const Login = () => {
       sessionStorage.setItem("rememberMe", "false");
       console.log(" Remember Me unchecked - removing email from localStorage");
     }
-  }
-
+  };
 
   return (
     <div className="login-wrapper">
