@@ -19,30 +19,30 @@ const Signup = () => {
     e.preventDefault();
 
     // ---------- form Validation ----------
-    const nameRegex = /^[A-Za-z\s]+$/;
-    if (!nameRegex.test(name)) {
-      setMessage("Name must contain only letters and spaces!");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
+    // const nameRegex = /^[A-Za-z\s]+$/;
+    // if (!nameRegex.test(name)) {
+    //   setMessage("Name must contain only letters and spaces!");
+    //   setTimeout(() => setMessage(""), 3000);
+    //   return;
+    // }
 
-    if (password.length < 6) {
-      setMessage("Password must be at least 6 characters long!");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
+    // if (password.length < 6) {
+    //   setMessage("Password must be at least 6 characters long!");
+    //   setTimeout(() => setMessage(""), 3000);
+    //   return;
+    // }
 
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match!");
-      setTimeout(() => setMessage(""), 3000);
-      return;
-    }
+    // if (password !== confirmPassword) {
+    //   setMessage("Passwords do not match!");
+    //   setTimeout(() => setMessage(""), 3000);
+    //   return;
+    // }
 
     try {
       const res = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name,nepaliName, email, role, password }),
+        body: JSON.stringify({ name,nepaliName, email, role, password ,confirmPassword}),
       });
 
       const data = await res.json();
@@ -68,6 +68,7 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="input-field">
+             <label for="fname">enter your full name:</label><br></br>
             <input
               placeholder="Full Name"
               type="text"
@@ -79,6 +80,7 @@ const Signup = () => {
           </div>
 {/* -----------------------------------------------neplai name----------------------------------------------- */}
 <div className="input-field">
+   <label for="fname">nepali name:</label><br></br>
             <input
               placeholder="Full Name nepali"
               type="text"
@@ -88,7 +90,7 @@ const Signup = () => {
               required
             />
           </div>
-
+ <label for="fname">enter your email </label><br></br>
           <div className="input-field">
             <input
               placeholder="Email"
@@ -99,7 +101,7 @@ const Signup = () => {
               required
             />
           </div>
-
+ <label for="fname">enter your role </label><br></br>
           <div className="input-field">
             <input
               placeholder="Role"
@@ -110,9 +112,10 @@ const Signup = () => {
               required
             />
           </div>
-
-          {/* Password */}
+ 
+          {/* Password -----------------------------------------------*/}
           <div className="input-field password-field">
+             <label for="fname">First your password</label><br></br>
             <input
               placeholder="Password"
               type={showPassword ? "text" : "password"}
@@ -131,6 +134,7 @@ const Signup = () => {
 
           {/* Confirm Password */}
           <div className="input-field password-field">
+             <label for="fname">Confirm Password</label><br></br>
             <input
               placeholder="Re-enter Password"
               type={showConfirm ? "text" : "password"}

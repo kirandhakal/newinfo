@@ -43,7 +43,9 @@ const Login = () => {
         console.log(" User login successful:", data);
         setMessage("Login successful");
         navigate("/home");
-      } else {
+      }
+   
+       else {
         setMessage(data.message || "ll-Invalid credentials ");
         setTimeout(() => setMessage(""), 3000);
       }
@@ -84,6 +86,7 @@ const Login = () => {
         <form onSubmit={handleLogin} autoComplete="off">
           {/*  for Email Input */}
           <div className="input-field">
+             <label for="email" className="label1">enter your email</label><br></br>
             <input
               type="email"
               placeholder="Email address"
@@ -96,6 +99,7 @@ const Login = () => {
 
           {/*  for Password Input */}
           <div className="input-field password-field">
+             <label for="password" className="label1">enter your password</label><br></br>
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
